@@ -1,6 +1,8 @@
-package tema6.colecciones;
+package tema7.hashset;
 
-public class Persona implements Comparable<Persona>{
+import java.util.Objects;
+
+public class Persona{
 
     private int id;
     private String nombre;
@@ -36,9 +38,17 @@ public class Persona implements Comparable<Persona>{
         this.edad = edad;
     }
 
+    //Auto-Generate
     @Override
-    public int compareTo(Persona o) {
-        //return Integer.compare(this.edad, o.getEdad());
-        return this.nombre.compareTo(o.getNombre());
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Persona persona = (Persona) o;
+        return Objects.equals(nombre, persona.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre);
     }
 }

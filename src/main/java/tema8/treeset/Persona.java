@@ -1,4 +1,6 @@
-package tema6.colecciones;
+package tema8.treeset;
+
+import java.util.Objects;
 
 public class Persona implements Comparable<Persona>{
 
@@ -36,9 +38,23 @@ public class Persona implements Comparable<Persona>{
         this.edad = edad;
     }
 
+    //Auto-Generate
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Persona persona = (Persona) o;
+        return edad == persona.edad &&
+                Objects.equals(nombre, persona.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, edad);
+    }
+
     @Override
     public int compareTo(Persona o) {
-        //return Integer.compare(this.edad, o.getEdad());
-        return this.nombre.compareTo(o.getNombre());
+        return Integer.compare(this.edad, o.getEdad());
     }
 }
